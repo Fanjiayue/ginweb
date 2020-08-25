@@ -4,17 +4,18 @@ import (
 	"fmt"
 	"github.com/jinzhu/gorm"
 	"ginweb/model"
+	"github.com/spf13/viper"
 )
 var DB *gorm.DB
 
 func InitDB() *gorm.DB{
-	driverName := "mysql"
-	host := "127.0.0.1"
-	port := "3306"
-	database := "ginweb"
-	username := "root"
-	password := "Fjy13819372207"
-	charset := "utf8mb4"
+	driverName := viper.GetString("datasource.driverName")
+	host :=  viper.GetString("datasource.host")
+	port := viper.GetString("datasource.port")
+	database := viper.GetString("datasource.database")
+	username := viper.GetString("datasource.username")
+	password := viper.GetString("datasource.password")
+	charset := viper.GetString("datasource.charset")
 	args := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=%s&parseTime=True", username, password, host, port,database,charset)
 	db, err := gorm.Open(driverName,args)
 	if err!=nil{
