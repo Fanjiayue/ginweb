@@ -19,10 +19,10 @@ func ReleaseToken(user model.User)(string,error){
 	claims := &Claims{
 		UserId: user.ID,
 		StandardClaims: jwt.StandardClaims{
-			ExpiresAt:exirationTime.Unix(),
-			IssuedAt:time.Now().Unix(),
-			Issuer:"oceanlearn.tech",
-			Subject:"user token",
+			ExpiresAt:exirationTime.Unix(),  //过期时间
+			IssuedAt:time.Now().Unix(),  //发放时间
+			Issuer:"oceanlearn.tech", //用户
+			Subject:"user-token",//主题
 		},
 	}
 

@@ -19,7 +19,7 @@ func main(){
 	if port !="" {
 		panic(r.Run(":"+port))
 	}
-	r.Run()
+	panic(r.Run())
 }
 
 
@@ -27,7 +27,7 @@ func InitConfig(){
 	workDir, _ := os.Getwd()
 	viper.SetConfigName("application")
 	viper.SetConfigType("yml")
-	viper.AddConfigPath(workDir+"config")
+	viper.AddConfigPath(workDir+"/config")
 	err := viper.ReadInConfig()
 	if err!=nil{
 		panic(err)
