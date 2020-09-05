@@ -21,6 +21,22 @@ func InitDB() *gorm.DB{
 	if err!=nil{
 		panic("failed to connect database, err: " + err.Error())
 	}
+
+	maxIdleConns := viper.GetInt("datasource.maxIdleConns")
+	maxOpenConns := viper.GetInt("datasource.maxOpenConns")
+	db.DB().SetMaxIdleConns(maxIdleConns)//SetMaxIdleConns用于设置闲置的连接数
+	db.DB().SetMaxOpenConns(maxOpenConns)//SetMaxOpenConns用于设置最大打开的连接数
+
+	// 启用Logger，显示详细日志
+	//db.LogMode(true)
+
+	// 自动迁移模式
+	//db.AutoMigrate(&Model.UserModel{},
+	//	&Model.UserDetailModel{},
+	//	&Model.UserAuthsModel{},
+	//)
+
+
 	db.AutoMigrate(&model.User{})
 
 	DB = db

@@ -2,7 +2,6 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
-	_ "github.com/go-sql-driver/mysql"
 	"ginweb/common"
 	"os"
 	"github.com/spf13/viper"
@@ -11,6 +10,8 @@ import (
 
 func main(){
 	InitConfig()
+	redis :=common.InitRedis()
+	defer redis.Close()
 	db := common.InitDB()
 	defer db.Close()
 	r := gin.Default()

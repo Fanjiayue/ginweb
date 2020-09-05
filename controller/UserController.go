@@ -10,6 +10,8 @@ import (
 	"golang.org/x/crypto/bcrypt"
 	"log"
 	"ginweb/response"
+	"github.com/gomodule/redigo/redis"
+	_"github.com/go-sql-driver/mysql"
 )
 //创建用户
 func Register(ctx *gin.Context) {
@@ -110,5 +112,19 @@ func Login(ctx *gin.Context){
 func Userinfo(ctx *gin.Context){
 	user,_ := ctx.Get("user")
 	response.Success(ctx,gin.H{"user":response.ToUserResponse(user.(model.User))},"查询成功")
+	return
+}
+
+func Test(ctx *gin.Context){
+	Redis := common.GetRedis()
+	_, err :=Redis.Do("SET","ID1","no1")
+	if err!=nil{
+		response.Response(ctx,http.StatusInternalServerError,500,nil,"系统错误")
+		log.Printf("redis genrate error: %v",err)
+		return
+	}
+	v,err:=redis.String(Redis.Do("GET","key"))
+
+	response.Success(ctx,gin.H{"token":v,},"查询成功")
 	return
 }

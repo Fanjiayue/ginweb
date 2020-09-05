@@ -8,3 +8,10 @@ datasource:
   username: root
   password: Fjy13819372207
   charset: utf8mb4
+  maxOpenConns: 100
+  maxIdleConns: 20
+redis:
+  host: 127.0.0.1
+  port: 6379
+  MaxIdle:  3
+  MaxActive:   8
