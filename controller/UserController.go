@@ -123,8 +123,8 @@ func Test(ctx *gin.Context){
 		log.Printf("redis genrate error: %v",err)
 		return
 	}
-	v,err:=redis.String(Redis.Do("GET","key"))
+	v,err:=redis.String(Redis.Do("GET","ID1"))
 
-	response.Success(ctx,gin.H{"token":v,},"查询成功")
+	response.Success(ctx,gin.H{"token":v},"查询成功")
 	return
 }

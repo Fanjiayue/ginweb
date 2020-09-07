@@ -10,7 +10,7 @@ var RedisClient *redis.Pool
 
 func InitRedis() *redis.Pool{
 
-	pool := &redis.Pool{
+	RedisClient = &redis.Pool{
 		MaxIdle:     viper.GetInt("redis.MaxIdle"), /*最大的空闲连接数*/
 		MaxActive:   viper.GetInt("redis.MaxActive"), /*最大的激活连接数*/
 		Dial: func() (redis.Conn, error) {
@@ -21,8 +21,8 @@ func InitRedis() *redis.Pool{
 			return c, nil
 		},
 	}
-	RedisClient = pool
-	return pool
+	//RedisClient = pool
+	return RedisClient
 
 }
 

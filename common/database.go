@@ -17,15 +17,16 @@ func InitDB() *gorm.DB{
 	password := viper.GetString("datasource.password")
 	charset := viper.GetString("datasource.charset")
 	args := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=%s&parseTime=True", username, password, host, port,database,charset)
-	db, err := gorm.Open(driverName,args)
+	var err error
+	DB, err = gorm.Open(driverName,args)
 	if err!=nil{
 		panic("failed to connect database, err: " + err.Error())
 	}
 
 	maxIdleConns := viper.GetInt("datasource.maxIdleConns")
 	maxOpenConns := viper.GetInt("datasource.maxOpenConns")
-	db.DB().SetMaxIdleConns(maxIdleConns)//SetMaxIdleConns用于设置闲置的连接数
-	db.DB().SetMaxOpenConns(maxOpenConns)//SetMaxOpenConns用于设置最大打开的连接数
+	DB.DB().SetMaxIdleConns(maxIdleConns)//SetMaxIdleConns用于设置闲置的连接数
+	DB.DB().SetMaxOpenConns(maxOpenConns)//SetMaxOpenConns用于设置最大打开的连接数
 
 	// 启用Logger，显示详细日志
 	//db.LogMode(true)
@@ -37,10 +38,9 @@ func InitDB() *gorm.DB{
 	//)
 
 
-	db.AutoMigrate(&model.User{})
+	DB.AutoMigrate(&model.User{})
 
-	DB = db
-	return db
+	return DB
 
 }
 
