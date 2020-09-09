@@ -9,10 +9,10 @@ import (
 
 
 func main(){
+	InitConfig()
 	kafka := common.InitKafka()
 	defer kafka.Close()
 	common.InitTail()
-	InitConfig()
 	redis :=common.InitRedis()
 	defer redis.Close()
 	db := common.InitDB()
