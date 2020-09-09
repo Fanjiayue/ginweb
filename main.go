@@ -9,6 +9,9 @@ import (
 
 
 func main(){
+	kafka := common.InitKafka()
+	defer kafka.Close()
+	common.InitTail()
 	InitConfig()
 	redis :=common.InitRedis()
 	defer redis.Close()
