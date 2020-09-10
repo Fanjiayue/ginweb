@@ -5,7 +5,11 @@ import (
 	"github.com/spf13/viper"
 )
 
-var tailObj *tail.Tail
+var (
+	tailObj *tail.Tail
+	//LogChan chan string
+	)
+
 
 func InitTail() *tail.Tail{
 	fileName := viper.GetString("tail.filename")
@@ -27,4 +31,9 @@ func InitTail() *tail.Tail{
 
 func GetTailObj() *tail.Tail{
 	return tailObj
+}
+
+func ReadChan() <-chan *tail.Line{
+	return tailObj.Lines
+
 }

@@ -10,12 +10,12 @@ import (
 
 func main(){
 	InitConfig()
-	kafka := common.InitKafka()
+	kafka := common.InitKafka()  //初始化kafka
 	defer kafka.Close()
-	common.InitTail()
-	redis :=common.InitRedis()
+	common.InitTail()            //初始化tail
+	redis :=common.InitRedis()   //初始化redis
 	defer redis.Close()
-	db := common.InitDB()
+	db := common.InitDB()		//初始化mysql
 	defer db.Close()
 	r := gin.Default()
 	r = ControllerRouter(r)
