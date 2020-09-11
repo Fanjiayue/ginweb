@@ -1,10 +1,10 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
 	"ginweb/common"
-	"os"
+	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
+	"os"
 )
 
 

@@ -1,4 +1,4 @@
-module Fanjiayue/ginweb
+module ginweb
 
 go 1.13
 
