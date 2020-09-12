@@ -1,6 +1,7 @@
 package common
 
 import (
+	"fmt"
 	"github.com/hpcloud/tail"
 	"github.com/spf13/viper"
 )
@@ -25,7 +26,7 @@ func InitTail() *tail.Tail{
 	if err != nil{
 		panic("tail file falsed,err :"+err.Error())
 	}
-
+	fmt.Println("tail connect success")
 	return tailObj
 }
 

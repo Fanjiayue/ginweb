@@ -22,7 +22,7 @@ func InitKafka() sarama.SyncProducer{
 	if err != nil {
 		panic("failed to connect kafka, err: " + err.Error())
 	}
-
+	fmt.Println("kafka connect success")
 	return KfkClinet
 }
 

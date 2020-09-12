@@ -1,6 +1,7 @@
 package common
 
 import (
+	"fmt"
 	"github.com/spf13/viper"
 	"github.com/gomodule/redigo/redis"
 
@@ -21,7 +22,7 @@ func InitRedis() *redis.Pool{
 			return c, nil
 		},
 	}
-	//RedisClient = pool
+	fmt.Println("redis connect success")
 	return RedisClient
 
 }

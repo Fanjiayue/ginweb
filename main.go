@@ -10,6 +10,8 @@ import (
 
 func main(){
 	InitConfig()
+	EtcdClient :=common.InitEtcd()//初始化etcd
+	EtcdClient.Close()
 	kafka := common.InitKafka()  //初始化kafka
 	defer kafka.Close()
 	common.InitTail()            //初始化tail

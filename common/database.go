@@ -36,9 +36,9 @@ func InitDB() *gorm.DB{
 	//	&Model.UserDetailModel{},
 	//	&Model.UserAuthsModel{},
 	//)
-
-
 	DB.AutoMigrate(&model.User{})
+
+	fmt.Println("database connect success")
 
 	return DB
 

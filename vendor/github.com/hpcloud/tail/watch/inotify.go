@@ -9,9 +9,8 @@ import (
 	"path/filepath"
 
 	"github.com/hpcloud/tail/util"
-	//"gopkg.in/fsnotify.v1"
-	//"goproxy.io/gopkg.in/fsnotify.v1"
-	"github.com/fsnotify/fsnotify"
+
+	"gopkg.in/fsnotify.v1"
 	"gopkg.in/tomb.v1"
 )
 
