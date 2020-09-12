@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3957e321-9865-4242-9919-56e15a59f0d9" name="默认的" comment="">
-      <change afterPath="$PROJECT_DIR$/common/etcd.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/hpcloud/tail/watch/inotify.go" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/github.com/hpcloud/tail/watch/inotify.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/hpcloud/tail/watch/inotify_tracker.go" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/github.com/hpcloud/tail/watch/inotify_tracker.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/modules.txt" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/modules.txt" afterDir="false" />
-    </list>
+    <list default="true" id="3957e321-9865-4242-9919-56e15a59f0d9" name="默认的" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
