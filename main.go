@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"ginweb/common"
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
@@ -10,11 +11,19 @@ import (
 
 func main(){
 	InitConfig()
-	etcdClient := common.InitEtcd() //初始化etcd
-	etcdClient.Close()
 	kafka := common.InitKafka()  //初始化kafka
-	defer kafka.Close()
-	common.InitTail()            //初始化tail
+	defer  kafka.Close()
+	etcdClient := common.InitEtcd() //初始化etcd
+	defer  etcdClient.Close()
+	logEntryConf, err :=common.GetConf(viper.GetString("etcd.key"))
+	if err != nil {
+		fmt.Printf("common.GetConf failed,err:%v\n",err)
+		return
+	}
+	fmt.Printf("get conf from etcd success, %v\n",logEntryConf)
+	common.InitTskMgr(logEntryConf)
+
+
 	redis :=common.InitRedis()   //初始化redis
 	defer redis.Close()
 	db := common.InitDB()		//初始化mysql

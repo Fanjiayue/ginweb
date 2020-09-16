@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3957e321-9865-4242-9919-56e15a59f0d9" name="默认的" comment="">
+      <change afterPath="$PROJECT_DIR$/common/taillog_mgr.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/etcd.go" beforeDir="false" afterPath="$PROJECT_DIR$/common/etcd.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/kafka.go" beforeDir="false" afterPath="$PROJECT_DIR$/common/kafka.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/taillog.go" beforeDir="false" afterPath="$PROJECT_DIR$/common/taillog.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

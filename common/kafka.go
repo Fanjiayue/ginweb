@@ -4,13 +4,23 @@ import (
 	"fmt"
 	"github.com/Shopify/sarama"
 	"github.com/spf13/viper"
+	"time"
 )
 
-var KfkClinet sarama.SyncProducer  //声明一个全局变量连接kafka的生产者client
+type logData struct {
+	topic string
+	data string
+}
+
+var (
+	KfkClinet sarama.SyncProducer  //声明一个全局变量连接kafka的生产者client
+	logDataChan chan *logData
+)
 
 func InitKafka() sarama.SyncProducer{
 	host :=  viper.GetString("kafka.host")
 	port := viper.GetString("kafka.port")
+	chanMaxSize := viper.GetInt("kafka.chan_max_size")
 	address := host+":"+port
 	fmt.Println(address)
 	config := sarama.NewConfig()
@@ -23,21 +33,57 @@ func InitKafka() sarama.SyncProducer{
 		panic("failed to connect kafka, err: " + err.Error())
 	}
 	fmt.Println("kafka connect success")
+	logDataChan = make(chan *logData,chanMaxSize)  //初始化日志通道
+	go sendToKafka()//开启后台的goroutine，将channel中的数据取出来发往kafka
 	return KfkClinet
 }
 
-
-func SendToKafka(topic, value string) (err error){
-	// 构造一个消息
-	msg := &sarama.ProducerMessage{}
-	msg.Topic = topic
-	//msg.Key = sarama.StringEncoder("log")
-	msg.Value = sarama.StringEncoder(value)
-
-	pid, offset, err := KfkClinet.SendMessage(msg)
-	if err != nil {
-		return err
+//将数据发送到通道中
+func SendToChan(topic, data string){
+	msg := &logData{
+		topic:topic,
+		data:data,
 	}
-	fmt.Printf("pid:%v offset:%v\n", pid, offset)
-	return nil
+	logDataChan<-msg
 }
+//将数据发送到kafka
+func sendToKafka() {
+	for{
+		select {
+		case logmsg :=<-logDataChan:
+			// 构造一个消息
+			msg := &sarama.ProducerMessage{}
+			msg.Topic = logmsg.topic
+			//msg.Key = sarama.StringEncoder("log")
+			msg.Value = sarama.StringEncoder(logmsg.data)
+
+			pid, offset, err := KfkClinet.SendMessage(msg)
+			if err != nil {
+				fmt.Printf("kafka sendmessage falsed, err: %v\n",err)
+				return
+			}
+			fmt.Printf("pid:%v offset:%v\n", pid, offset)
+		default:
+			time.Sleep(time.Millisecond*50)
+		}
+
+	}
+
+}
+
+////将数据发送到kafka
+//func SendToKafka(topic, value string) {
+//	// 构造一个消息
+//	msg := &sarama.ProducerMessage{}
+//	msg.Topic = topic
+//	//msg.Key = sarama.StringEncoder("log")
+//	msg.Value = sarama.StringEncoder(value)
+//
+//	pid, offset, err := KfkClinet.SendMessage(msg)
+//	if err != nil {
+//		fmt.Printf("kafka sendmessage falsed, err: %v\n",err)
+//		return
+//	}
+//	fmt.Printf("pid:%v offset:%v\n", pid, offset)
+//	return
+//}
