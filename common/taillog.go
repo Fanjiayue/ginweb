@@ -41,6 +41,7 @@ func (t *TailTask)initTail() (){
 		fmt.Printf("tail.TailFile falsed, err: %v\n",err)
 		return
 	}
+	fmt.Println("tail.TailFile success")
 	go t.run()
 
 }

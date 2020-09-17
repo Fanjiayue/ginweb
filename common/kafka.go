@@ -60,7 +60,6 @@ func sendToKafka() {
 			pid, offset, err := KfkClinet.SendMessage(msg)
 			if err != nil {
 				fmt.Printf("kafka sendmessage falsed, err: %v\n",err)
-				return
 			}
 			fmt.Printf("pid:%v offset:%v\n", pid, offset)
 		default:

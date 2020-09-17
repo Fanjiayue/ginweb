@@ -15,7 +15,7 @@ func main(){
 	defer  kafka.Close()
 	etcdClient := common.InitEtcd() //初始化etcd
 	defer  etcdClient.Close()
-	logEntryConf, err :=common.GetConf(viper.GetString("etcd.key"))
+	logEntryConf, err :=common.GetConf()
 	if err != nil {
 		fmt.Printf("common.GetConf failed,err:%v\n",err)
 		return
@@ -24,10 +24,10 @@ func main(){
 	common.InitTskMgr(logEntryConf)
 
 
-	redis :=common.InitRedis()   //初始化redis
-	defer redis.Close()
-	db := common.InitDB()		//初始化mysql
-	defer db.Close()
+	//redis :=common.InitRedis()   //初始化redis
+	//defer redis.Close()
+	//db := common.InitDB()		//初始化mysql
+	//defer db.Close()
 	r := gin.Default()
 	r = ControllerRouter(r)
 	port := viper.GetString("server.port")
