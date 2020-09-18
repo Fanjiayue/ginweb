@@ -32,7 +32,7 @@ func (t *tailLogMgr)run(){
 	for{
 		select {
 		case newConf := <-t.newConfChan:
-			for _,conf := range newConf{
+			for _, conf := range newConf{
 				mk := fmt.Sprintf("%s_%s",conf.Path,conf.Topic)
 				_,ok := t.taskMap[mk]
 				if ok {
@@ -47,6 +47,19 @@ func (t *tailLogMgr)run(){
 				}
 			}
 			//找出原来t.logEntry中有的，newConf中没有的，去删除
+			for _, c1 := range t.logEntry{
+				isDelete := true
+				for _, c2 := range newConf{
+					if c2.Path == c1.Path && c2.Topic==c1.Topic{
+						isDelete = false
+					}
+				}
+				if isDelete{
+					//把c1对应的tailClient停掉
+					mk := fmt.Sprintf("%s_%s",c1.Path,c1.Topic)
+					t.taskMap[mk].cannelFunc()
+				}
+			}
 
 		default:
 		 	time.Sleep(time.Second)
