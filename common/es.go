@@ -18,7 +18,7 @@ var ch chan *logDataEs
 
 func InitEs()(err error){
 	url :=  viper.GetString("es.url")
-	chanMaxSize := viper.GetInt("kafka.chan_max_size")
+	chanMaxSize := viper.GetInt("es.chan_max_size")
 	EsClient,err = elastic.NewClient(elastic.SetSniff(false),elastic.SetURL(url))
 	if err!=nil{
 		return
