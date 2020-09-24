@@ -13,6 +13,7 @@ require (
 	github.com/google/uuid v1.1.2 // indirect
 	github.com/hpcloud/tail v1.0.0
 	github.com/jinzhu/gorm v1.9.16
+	github.com/olivere/elastic/v7 v7.0.20
 	github.com/spf13/viper v1.7.1
 	go.etcd.io/etcd v3.3.25+incompatible
 	golang.org/x/crypto v0.0.0-20200820211705-5c72a883971a

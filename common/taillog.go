@@ -8,7 +8,7 @@ import (
 )
 
 //var (
-//	tailObj *tail.Tail
+//	tailOb *tail.Tail
 //	//LogChan chan string
 //	)
 
