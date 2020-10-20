@@ -12,7 +12,7 @@ import (
 //	//LogChan chan string
 //	)
 
-// TailTask : 一个日志手机项任务
+// TailTask : 一个日志收集项任务
 type TailTask struct {
 	path string
 	topic string

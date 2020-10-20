@@ -2,8 +2,8 @@ package common
 
 import (
 	"fmt"
-	"github.com/jinzhu/gorm"
 	"ginweb/model"
+	"github.com/jinzhu/gorm"
 	"github.com/spf13/viper"
 )
 var DB *gorm.DB

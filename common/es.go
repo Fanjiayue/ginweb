@@ -25,7 +25,9 @@ func InitEs()(err error){
 	}
 	fmt.Println("content to es success")
 	ch = make(chan *logDataEs,chanMaxSize)
-	go SendToEs()
+	for i:=1;i<=16;i++{
+		go SendToEs()
+	}
 	return
 }
 

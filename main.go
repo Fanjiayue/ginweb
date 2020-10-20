@@ -32,10 +32,10 @@ func main(){
 	common.InitTskMgr(logEntryConf)
 
 
-	//redis :=common.InitRedis()   //初始化redis连接池
-	//defer redis.Close()
-	//db := common.InitDB()		//初始化mysql连接池
-	//defer db.Close()
+	redis :=common.InitRedis()   //初始化redis连接池
+	defer redis.Close()
+	db := common.InitDB()		//初始化mysql连接池
+	defer db.Close()
 	r := gin.Default()
 	r = ControllerRouter(r)
 	port := viper.GetString("server.port")
