@@ -80,8 +80,8 @@ func PutConf(key string,value string) (err error){
 		panic("配置文件host和port长度不一致")
 	}
 	var address = []string{"","","","","","","","","",""}
-	for key, _ := range hosts {
-		address[key] = hosts[key]+":"+ports[key]
+	for k, _ := range hosts {
+		address[k] = hosts[k]+":"+ports[k]
 	}
 	var cli *clientv3.Client
 	cli, err = clientv3.New(clientv3.Config{

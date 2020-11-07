@@ -104,7 +104,7 @@ func Login(ctx *gin.Context){
 	}
 
 
-	response.Success(ctx,gin.H{"token":token,},"查询成功")
+	response.Success(ctx,gin.H{"token":token},"查询成功")
 	return
 
 }
